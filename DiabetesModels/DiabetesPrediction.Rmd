@@ -1,0 +1,79 @@
+---
+title: "Diabetes Predictions"
+author: "Brian Beres"
+date: "12/14/2020"
+output: pdf_document
+---
+
+```{r}
+# Load dataset
+Diabetes<-read.csv("diabetes.csv")
+str(Diabetes)
+Diabetes$Outcome<-as.factor(Diabetes$Outcome)
+Diabetes<-na.omit(Diabetes)
+str(Diabetes)
+head(Diabetes)
+
+# Divide the dataset
+library(caret)
+divideData<-createDataPartition(Diabetes$Outcome,p=.1,list=FALSE)
+train<-Diabetes[divideData,]
+test<-Diabetes[-divideData,]
+
+# Fit the model with training data
+knnfit<-train(Outcome~.,data=train,method="knn",preProcess=c("center","scale"))
+plot(knnfit)
+knnfit$bestTune
+knnfit
+
+# Make predictions on the dataset
+knnclass<-predict(knnfit,newdata = test)
+head(knnclass)
+
+# Calculate confusion matrix and accurcy rate
+confusionMatrix(knnclass,test$Outcome)
+mean(knnclass==test$Outcome)
+
+# LOOCV Method
+trainControl<-trainControl(method="LOOCV")
+knn_model<-train(Outcome~.,method="knn",data=train,tuneLength=7,trControl=trainControl)
+knn_model
+plot(knn_model)
+knn_model$bestTune
+newpred<-predict(knn_model,newdata = test)
+mean(newpred==test$Outcome)
+confusionMatrix(newpred,test$Outcome)
+
+# K-Fold
+trainControl<-trainControl(method="cv",number=10)
+knn_model2<-train(Outcome~.,method="knn",data=train,tuneLength=7,trControl=trainControl)
+knn_model2
+plot(knn_model2)
+knn_model2$bestTune
+newpred<-predict(knn_model2,newdata = test)
+mean(newpred==test$Outcome) #Accuracy rate: [1] 0.7192885
+confusionMatrix(newpred,test$Outcome)
+table(newpred,test$Outcome)
+
+# K-Fold with LDA
+trainControl<-trainControl(method="cv",number=10)
+ldamodel<-train(Outcome~.,method="lda",data=train,trControl=trainControl)
+ldamodel
+newpred<-predict(ldamodel,newdata = test)
+mean(newpred==test$Outcome)
+confusionMatrix(newpred,test$Outcome)
+table(newpred,test$Outcome)
+
+# K-Fold with QDA
+trainControl<-trainControl(method="cv",number=10)
+qdamodel<-train(Outcome~.,method="qda",data=train,trControl=trainControl)
+qdamodel
+newpred<-predict(qdamodel,newdata = test)
+mean(newpred==test$Outcome)
+confusionMatrix(newpred,test$Outcome)
+table(newpred,test$Outcome)
+
+# Overall, the K-Fold with LDA proved to be the best model. This is because it
+# has the highest accuracy rate amoung the models tested.
+```
+
