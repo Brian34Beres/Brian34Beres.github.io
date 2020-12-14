@@ -1,7 +1,7 @@
 ---
-title: Diabetes Prediction Models
+title: Diabetes Models
 ---
 
-These are links to work I've done with the diabetes dataset from Kaggle.com
+These are links to work I've done with the diabetes dataset from https://www.kaggle.com/johndasilva/diabetes.
 
-- [Diabetes Model Predictions](DiabetesModels/DiabetesPredictions.html)
+- [Diabetes Model Predictions](DiabetesModels/index.html)
