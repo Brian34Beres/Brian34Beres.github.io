@@ -8,11 +8,6 @@ About Me
 <img align="left" width=200px height=250px src="HeadshotSmall.jpg"> My name is Brian Beres and I'm currently an MSBA student at William & Mary set to graduate in May of 2021. Prior to my time at William & Mary, I was a 4 year student at Ohio University. During my time in undergrad, I majored in Business Analytics and Entrepreneurship. This github portfolio aims to display the skills I have learned in both programs. If there are any questions regarding this portfolio or my work availability, I can be reached at bberes@email.wm.edu.
 
 
-
-
-
-
-
 ---
 Relevant Work
 ---
