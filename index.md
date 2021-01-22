@@ -11,6 +11,8 @@ About Me
 Resume
 ---
 
+Attached below is a copy of my resume. This includes my previous intern expereiences and education background. I am always open to new opportunities to expand on my knowledge!
+
 - [Brian Beres Resume](/BrianBeres_Resume.docx)
 
 ---
