@@ -11,6 +11,7 @@ About Me
 Resume
 ---
 
+- [Brian Beres Resume](/BrianBeres_Resume.docx)
 
 ---
 Relevant Work
